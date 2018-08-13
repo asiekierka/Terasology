@@ -63,17 +63,17 @@ public class HeadlessGraphics implements EngineSubsystem {
 
     @Override
     public void registerCoreAssetTypes(ModuleAwareAssetTypeManager assetTypeManager) {
-        assetTypeManager.registerCoreAssetType(Font.class, (AssetFactory<Font, FontData>) FontImpl::new, "fonts");
-        assetTypeManager.registerCoreAssetType(Texture.class, (AssetFactory<Texture, TextureData>) HeadlessTexture::new, "textures", "fonts");
+        assetTypeManager.createAssetType(Font.class, FontImpl::new, "fonts");
+        assetTypeManager.createAssetType(Texture.class, HeadlessTexture::new, "textures", "fonts");
         assetTypeManager.registerCoreFormat(Texture.class, new PNGTextureFormat(Texture.FilterMode.NEAREST, path -> path.getName(2).toString().equals("textures")));
         assetTypeManager.registerCoreFormat(Texture.class, new PNGTextureFormat(Texture.FilterMode.LINEAR, path -> path.getName(2).toString().equals("fonts")));
-        assetTypeManager.registerCoreAssetType(Shader.class, (AssetFactory<Shader, ShaderData>) HeadlessShader::new, "shaders");
-        assetTypeManager.registerCoreAssetType(Material.class, (AssetFactory<Material, MaterialData>) HeadlessMaterial::new, "materials");
-        assetTypeManager.registerCoreAssetType(Mesh.class, (AssetFactory<Mesh, MeshData>) HeadlessMesh::new, "mesh");
-        assetTypeManager.registerCoreAssetType(SkeletalMesh.class, (AssetFactory<SkeletalMesh, SkeletalMeshData>) HeadlessSkeletalMesh::new, "skeletalMesh");
-        assetTypeManager.registerCoreAssetType(MeshAnimation.class, (AssetFactory<MeshAnimation, MeshAnimationData>) MeshAnimationImpl::new, "animations");
-        assetTypeManager.registerCoreAssetType(Atlas.class, (AssetFactory<Atlas, AtlasData>) Atlas::new, "atlas");
-        assetTypeManager.registerCoreAssetType(Subtexture.class, (AssetFactory<Subtexture, SubtextureData>) Subtexture::new);
+        assetTypeManager.createAssetType(Shader.class, HeadlessShader::new, "shaders");
+        assetTypeManager.createAssetType(Material.class, HeadlessMaterial::new, "materials");
+        assetTypeManager.createAssetType(Mesh.class, HeadlessMesh::new, "mesh");
+        assetTypeManager.createAssetType(SkeletalMesh.class, HeadlessSkeletalMesh::new, "skeletalMesh");
+        assetTypeManager.createAssetType(MeshAnimation.class, MeshAnimationImpl::new, "animations");
+        assetTypeManager.createAssetType(Atlas.class, Atlas::new, "atlas");
+        assetTypeManager.createAssetType(Subtexture.class, Subtexture::new);
     }
 
     @Override

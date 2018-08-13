@@ -32,11 +32,11 @@ import org.terasology.entitySystem.prefab.PrefabData;
 import org.terasology.entitySystem.prefab.internal.PojoPrefab;
 import org.terasology.logic.behavior.asset.BehaviorTree;
 import org.terasology.logic.behavior.asset.BehaviorTreeData;
-import org.terasology.module.DependencyInfo;
-import org.terasology.module.DependencyResolver;
 import org.terasology.module.Module;
 import org.terasology.module.ModuleEnvironment;
-import org.terasology.module.ResolutionResult;
+import org.terasology.module.dependencyresolution.DependencyInfo;
+import org.terasology.module.dependencyresolution.DependencyResolver;
+import org.terasology.module.dependencyresolution.ResolutionResult;
 import org.terasology.naming.Name;
 import org.terasology.reflection.copy.CopyStrategyLibrary;
 import org.terasology.reflection.reflect.ReflectFactory;
@@ -302,23 +302,23 @@ public class UniverseSetupScreen extends CoreScreenLayer {
         context.put(BlockFamilyRegistry.class, familyFactoryRegistry);
 
         // cast lambdas explicitly to avoid inconsistent compiler behavior wrt. type inference
-        assetTypeManager.registerCoreAssetType(Prefab.class,
+        assetTypeManager.createAssetType(Prefab.class,
                 (AssetFactory<Prefab, PrefabData>) PojoPrefab::new, false, "prefabs");
-        assetTypeManager.registerCoreAssetType(BlockShape.class,
+        assetTypeManager.createAssetType(BlockShape.class,
                 (AssetFactory<BlockShape, BlockShapeData>) BlockShapeImpl::new, "shapes");
-        assetTypeManager.registerCoreAssetType(BlockSounds.class,
+        assetTypeManager.createAssetType(BlockSounds.class,
                 (AssetFactory<BlockSounds, BlockSoundsData>) BlockSounds::new, "blockSounds");
-        assetTypeManager.registerCoreAssetType(BlockTile.class,
+        assetTypeManager.createAssetType(BlockTile.class,
                 (AssetFactory<BlockTile, TileData>) BlockTile::new, "blockTiles");
-        assetTypeManager.registerCoreAssetType(BlockFamilyDefinition.class,
+        assetTypeManager.createAssetType(BlockFamilyDefinition.class,
                 (AssetFactory<BlockFamilyDefinition, BlockFamilyDefinitionData>) BlockFamilyDefinition::new, "blocks");
         assetTypeManager.registerCoreFormat(BlockFamilyDefinition.class,
                 new BlockFamilyDefinitionFormat(assetTypeManager.getAssetManager(), familyFactoryRegistry));
-        assetTypeManager.registerCoreAssetType(UISkin.class,
+        assetTypeManager.createAssetType(UISkin.class,
                 (AssetFactory<UISkin, UISkinData>) UISkin::new, "skins");
-        assetTypeManager.registerCoreAssetType(BehaviorTree.class,
+        assetTypeManager.createAssetType(BehaviorTree.class,
                 (AssetFactory<BehaviorTree, BehaviorTreeData>) BehaviorTree::new, false, "behaviors");
-        assetTypeManager.registerCoreAssetType(UIElement.class,
+        assetTypeManager.createAssetType(UIElement.class,
                 (AssetFactory<UIElement, UIData>) UIElement::new, "ui");
     }
 

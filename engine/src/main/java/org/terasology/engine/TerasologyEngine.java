@@ -322,27 +322,27 @@ public class TerasologyEngine implements GameEngine {
         rootContext.put(BlockFamilyRegistry.class, familyFactoryRegistry);
 
         // cast lambdas explicitly to avoid inconsistent compiler behavior wrt. type inference
-        assetTypeManager.registerCoreAssetType(Prefab.class,
-                (AssetFactory<Prefab, PrefabData>) PojoPrefab::new, false, "prefabs");
-        assetTypeManager.registerCoreAssetType(BlockShape.class,
+        assetTypeManager.createAssetType(Prefab.class,
+                (AssetFactory<Prefab, PrefabData>) PojoPrefab::new,  "prefabs");
+        assetTypeManager.createAssetType(BlockShape.class,
                 (AssetFactory<BlockShape, BlockShapeData>) BlockShapeImpl::new, "shapes");
-        assetTypeManager.registerCoreAssetType(BlockSounds.class,
+        assetTypeManager.createAssetType(BlockSounds.class,
                 (AssetFactory<BlockSounds, BlockSoundsData>) BlockSounds::new, "blockSounds");
-        assetTypeManager.registerCoreAssetType(BlockTile.class,
+        assetTypeManager.createAssetType(BlockTile.class,
                 (AssetFactory<BlockTile, TileData>) BlockTile::new, "blockTiles");
-        assetTypeManager.registerCoreAssetType(BlockFamilyDefinition.class,
+        assetTypeManager.createAssetType(BlockFamilyDefinition.class,
                 (AssetFactory<BlockFamilyDefinition, BlockFamilyDefinitionData>) BlockFamilyDefinition::new, "blocks");
         assetTypeManager.registerCoreFormat(BlockFamilyDefinition.class,
                 new BlockFamilyDefinitionFormat(assetTypeManager.getAssetManager(), familyFactoryRegistry));
-        assetTypeManager.registerCoreAssetType(UISkin.class,
+        assetTypeManager.createAssetType(UISkin.class,
                 (AssetFactory<UISkin, UISkinData>) UISkin::new, "skins");
-        assetTypeManager.registerCoreAssetType(BehaviorTree.class,
-                (AssetFactory<BehaviorTree, BehaviorTreeData>) BehaviorTree::new, false, "behaviors");
-        assetTypeManager.registerCoreAssetType(UIElement.class,
+        assetTypeManager.createAssetType(BehaviorTree.class,
+                (AssetFactory<BehaviorTree, BehaviorTreeData>) BehaviorTree::new, "behaviors");
+        assetTypeManager.createAssetType(UIElement.class,
                 (AssetFactory<UIElement, UIData>) UIElement::new, "ui");
 
         for (EngineSubsystem subsystem : allSubsystems) {
-            subsystem.registerCoreAssetTypes(assetTypeManager);
+            subsystem.createAssetTypes(assetTypeManager);
         }
     }
 
@@ -427,7 +427,7 @@ public class TerasologyEngine implements GameEngine {
             return false;
         }
 
-        assetTypeManager.reloadChangedOnDisk();
+        assetTypeManager.reloadChangedAssets();
 
         processPendingState();
 

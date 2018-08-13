@@ -103,9 +103,9 @@ public class LwjglGraphics extends BaseLwjglSubsystem {
     public void registerCoreAssetTypes(ModuleAwareAssetTypeManager assetTypeManager) {
 
         // cast lambdas explicitly to avoid inconsistent compiler behavior wrt. type inference
-        assetTypeManager.registerCoreAssetType(Font.class,
+        assetTypeManager.createAssetType(Font.class,
                 (AssetFactory<Font, FontData>) FontImpl::new, "fonts");
-        assetTypeManager.registerCoreAssetType(Texture.class, (AssetFactory<Texture, TextureData>)
+        assetTypeManager.createAssetType(Texture.class, (AssetFactory<Texture, TextureData>)
                 (urn, assetType, data) -> (new OpenGLTexture(urn, assetType, data, this)), "textures", "fonts");
         assetTypeManager.registerCoreFormat(Texture.class,
                 new PNGTextureFormat(Texture.FilterMode.NEAREST, path -> {
@@ -123,19 +123,19 @@ public class LwjglGraphics extends BaseLwjglSubsystem {
                         return path.getName(2).toString().equals("fonts");
                     }
                 }));
-        assetTypeManager.registerCoreAssetType(Shader.class,
+        assetTypeManager.createAssetType(Shader.class,
                 (AssetFactory<Shader, ShaderData>) GLSLShader::new, "shaders");
-        assetTypeManager.registerCoreAssetType(Material.class,
+        assetTypeManager.createAssetType(Material.class,
                 (AssetFactory<Material, MaterialData>) GLSLMaterial::new, "materials");
-        assetTypeManager.registerCoreAssetType(Mesh.class, (AssetFactory<Mesh, MeshData>)
+        assetTypeManager.createAssetType(Mesh.class, (AssetFactory<Mesh, MeshData>)
                 (urn, assetType, data) -> new OpenGLMesh(urn, assetType, bufferPool, data), "mesh");
-        assetTypeManager.registerCoreAssetType(SkeletalMesh.class, (AssetFactory<SkeletalMesh, SkeletalMeshData>)
+        assetTypeManager.createAssetType(SkeletalMesh.class, (AssetFactory<SkeletalMesh, SkeletalMeshData>)
                 (urn, assetType, data) -> new OpenGLSkeletalMesh(urn, assetType, data, bufferPool), "skeletalMesh");
-        assetTypeManager.registerCoreAssetType(MeshAnimation.class,
+        assetTypeManager.createAssetType(MeshAnimation.class,
                 (AssetFactory<MeshAnimation, MeshAnimationData>) MeshAnimationImpl::new, "animations");
-        assetTypeManager.registerCoreAssetType(Atlas.class,
+        assetTypeManager.createAssetType(Atlas.class,
                 (AssetFactory<Atlas, AtlasData>) Atlas::new, "atlas");
-        assetTypeManager.registerCoreAssetType(Subtexture.class,
+        assetTypeManager.createAssetType(Subtexture.class,
                 (AssetFactory<Subtexture, SubtextureData>) Subtexture::new);
     }
 

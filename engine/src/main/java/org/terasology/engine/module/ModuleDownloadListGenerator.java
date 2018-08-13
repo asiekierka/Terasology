@@ -16,11 +16,10 @@
 package org.terasology.engine.module;
 
 import org.terasology.engine.TerasologyConstants;
-import org.terasology.module.DependencyResolver;
 import org.terasology.module.Module;
 import org.terasology.module.ModuleRegistry;
-import org.terasology.module.PathModule;
-import org.terasology.module.ResolutionResult;
+import org.terasology.module.dependencyresolution.DependencyResolver;
+import org.terasology.module.dependencyresolution.ResolutionResult;
 import org.terasology.naming.Name;
 import org.terasology.naming.Version;
 

@@ -187,19 +187,19 @@ public class HeadlessEnvironment extends Environment {
         ModuleAwareAssetTypeManager assetTypeManager = new ModuleAwareAssetTypeManager();
 
         // cast lambdas explicitly to avoid inconsistent compiler behavior wrt. type inference
-        assetTypeManager.registerCoreAssetType(Prefab.class,
-                PojoPrefab::new, false, "prefabs");
-        assetTypeManager.registerCoreAssetType(BlockShape.class,
+        assetTypeManager.createAssetType(Prefab.class,
+                PojoPrefab::new, "prefabs");
+        assetTypeManager.createAssetType(BlockShape.class,
                 BlockShapeImpl::new, "shapes");
-        assetTypeManager.registerCoreAssetType(BlockSounds.class,
+        assetTypeManager.createAssetType(BlockSounds.class,
                 BlockSounds::new, "blockSounds");
-        assetTypeManager.registerCoreAssetType(BlockTile.class,
+        assetTypeManager.createAssetType(BlockTile.class,
                 BlockTile::new, "blockTiles");
-        assetTypeManager.registerCoreAssetType(BlockFamilyDefinition.class,
+        assetTypeManager.createAssetType(BlockFamilyDefinition.class,
                 BlockFamilyDefinition::new, "blocks");
 
-        assetTypeManager.registerCoreAssetType(StaticSound.class, NullSound::new, "sounds");
-        assetTypeManager.registerCoreAssetType(StreamingSound.class, NullStreamingSound::new, "music");
+        assetTypeManager.createAssetType(StaticSound.class, NullSound::new, "sounds");
+        assetTypeManager.createAssetType(StreamingSound.class, NullStreamingSound::new, "music");
 
         BlockFamilyRegistry blockFamilyFactoryRegistry = new BlockFamilyRegistry();
         blockFamilyFactoryRegistry.setBlockFamily("horizontal", HorizontalFamily.class);
@@ -207,35 +207,35 @@ public class HeadlessEnvironment extends Environment {
         assetTypeManager.registerCoreFormat(BlockFamilyDefinition.class,
                 new BlockFamilyDefinitionFormat(assetTypeManager.getAssetManager(), blockFamilyFactoryRegistry));
 
-        assetTypeManager.registerCoreAssetType(UISkin.class,
+        assetTypeManager.createAssetType(UISkin.class,
                 UISkin::new, "skins");
-        assetTypeManager.registerCoreAssetType(BehaviorTree.class,
+        assetTypeManager.createAssetType(BehaviorTree.class,
                 BehaviorTree::new, false, "behaviors");
-        assetTypeManager.registerCoreAssetType(UIElement.class,
+        assetTypeManager.createAssetType(UIElement.class,
                 UIElement::new, "ui");
-        assetTypeManager.registerCoreAssetType(Font.class,
+        assetTypeManager.createAssetType(Font.class,
                 FontImpl::new, "fonts");
-        assetTypeManager.registerCoreAssetType(Texture.class,
+        assetTypeManager.createAssetType(Texture.class,
                 HeadlessTexture::new, "textures", "fonts");
         assetTypeManager.registerCoreFormat(Texture.class,
                 new PNGTextureFormat(Texture.FilterMode.NEAREST, path -> path.getName(2).toString().equals("textures")));
         assetTypeManager.registerCoreFormat(Texture.class,
                 new PNGTextureFormat(Texture.FilterMode.LINEAR, path -> path.getName(2).toString().equals("fonts")));
 
-        assetTypeManager.registerCoreAssetType(Shader.class,
+        assetTypeManager.createAssetType(Shader.class,
                 HeadlessShader::new, "shaders");
-        assetTypeManager.registerCoreAssetType(Material.class,
+        assetTypeManager.createAssetType(Material.class,
                 HeadlessMaterial::new, "materials");
-        assetTypeManager.registerCoreAssetType(Mesh.class,
+        assetTypeManager.createAssetType(Mesh.class,
                 HeadlessMesh::new, "mesh");
-        assetTypeManager.registerCoreAssetType(SkeletalMesh.class,
+        assetTypeManager.createAssetType(SkeletalMesh.class,
                 HeadlessSkeletalMesh::new, "skeletalMesh");
-        assetTypeManager.registerCoreAssetType(MeshAnimation.class,
+        assetTypeManager.createAssetType(MeshAnimation.class,
                 MeshAnimationImpl::new, "animations");
 
-        assetTypeManager.registerCoreAssetType(Atlas.class,
+        assetTypeManager.createAssetType(Atlas.class,
                 Atlas::new, "atlas");
-        assetTypeManager.registerCoreAssetType(Subtexture.class,
+        assetTypeManager.createAssetType(Subtexture.class,
                 Subtexture::new);
 
         assetTypeManager.switchEnvironment(context.get(ModuleManager.class).getEnvironment());

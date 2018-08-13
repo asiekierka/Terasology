@@ -44,9 +44,9 @@ import org.terasology.input.internal.AbstractBindableAxis;
 import org.terasology.input.internal.BindableAxisImpl;
 import org.terasology.input.internal.BindableButtonImpl;
 import org.terasology.input.internal.BindableRealAxis;
-import org.terasology.module.DependencyResolver;
 import org.terasology.module.ModuleEnvironment;
-import org.terasology.module.ResolutionResult;
+import org.terasology.module.dependencyresolution.DependencyResolver;
+import org.terasology.module.dependencyresolution.ResolutionResult;
 import org.terasology.module.predicates.FromModule;
 import org.terasology.naming.Name;
 

@@ -24,10 +24,10 @@ import org.terasology.engine.bootstrap.EnvironmentSwitchHandler;
 import org.terasology.engine.modes.StateMainMenu;
 import org.terasology.engine.module.ModuleManager;
 import org.terasology.game.GameManifest;
-import org.terasology.module.DependencyResolver;
 import org.terasology.module.Module;
 import org.terasology.module.ModuleEnvironment;
-import org.terasology.module.ResolutionResult;
+import org.terasology.module.dependencyresolution.DependencyResolver;
+import org.terasology.module.dependencyresolution.ResolutionResult;
 import org.terasology.naming.Name;
 import org.terasology.naming.NameVersion;
 

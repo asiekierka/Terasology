@@ -19,14 +19,14 @@ package org.terasology.engine.module;
 import java.net.URL;
 import java.util.Collections;
 
-import org.terasology.module.BaseModule;
+import org.terasology.module.Module;
 import org.terasology.module.ModuleMetadata;
 import com.google.common.collect.ImmutableList;
 
 /**
  * A module that lives in a remote location.
  */
-public class RemoteModule extends BaseModule {
+public class RemoteModule extends Module {
 
     RemoteModule(ModuleMetadata meta) {
         super(Collections.emptyList(), meta);
